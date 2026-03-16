@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About — AgriAI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --leaf: #2d6a4f; --leaf2: #40916c; --lime: #b7e4c7;
+      --cream: #fefae0; --text: #1a1a1a; --muted: #6b7280;
+      --border: #d1d5db; --card: #ffffff; --bg: #f0f4f0;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); }
+    nav {
+      background: var(--leaf); padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px; box-shadow: 0 2px 12px rgba(0,0,0,.2);
+    }
+    .nav-brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; }
+    .nav-brand span { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--cream); }
+    .nav-links { display: flex; gap: 1.6rem; }
+    .nav-links a { color: var(--lime); text-decoration: none; font-size: .9rem; font-weight: 500; }
+    .nav-links a:hover { color: #fff; }
+
+    .hero {
+      background: linear-gradient(135deg, var(--leaf) 0%, var(--leaf2) 60%, #74c69d 100%);
+      padding: 4rem 2rem 3rem; text-align: center;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem); color: #fff; margin-bottom: .8rem;
+    }
+    .hero p { color: var(--lime); font-size: 1rem; max-width: 500px; margin: 0 auto; font-weight: 300; }
+
+    .content { max-width: 860px; margin: 3rem auto; padding: 0 1.5rem 4rem; }
+
+    .card {
+      background: var(--card); border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,.08); overflow: hidden; margin-bottom: 2rem;
+    }
+    .card-header {
+      background: var(--cream); padding: 1rem 1.6rem;
+      border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: .7rem;
+    }
+    .card-header h2 { font-family: 'Playfair Display', serif; color: var(--leaf); font-size: 1.2rem; }
+    .card-body { padding: 1.6rem; }
+    .card-body p { font-size: .92rem; color: #374151; line-height: 1.8; margin-bottom: .8rem; }
+    .card-body p:last-child { margin-bottom: 0; }
+
+    .stat-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin-top: 1rem;
+    }
+    .stat-item {
+      background: #f0fdf4; border-radius: 12px; padding: 1.2rem; text-align: center;
+    }
+    .stat-value { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--leaf); font-weight: 700; }
+    .stat-desc { font-size: .8rem; color: var(--muted); margin-top: .2rem; }
+
+    .class-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: .5rem; margin-top: 1rem;
+    }
+    .class-tag {
+      background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px;
+      padding: .4rem .8rem; font-size: .78rem; color: #166534;
+    }
+    .class-tag.healthy { background: #f0fdf4; border-color: #86efac; }
+    .class-tag.diseased { background: #fff7ed; border-color: #fed7aa; color: #9a3412; }
+
+    footer { background: #1a2e1a; color: #6b7280; text-align: center; padding: 1.5rem; font-size: .8rem; }
+    footer a { color: var(--lime); text-decoration: none; }
+  </style>
+</head>
+<body>
+<nav>
+  <a class="nav-brand" href="/">
+    <span>🌿 AgriAI</span>
+  </a>
+  <div class="nav-links">
+    <a href="/">Diagnose</a>
+    <a href="/about">About</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <h1>About AgriAI</h1>
+  <p>Learn about the model, the dataset, and what diseases we can detect.</p>
+</div>
+
+<div class="content">
+
+  <div class="card">
+    <div class="card-header"><span>🧠</span><h2>The Model</h2></div>
+    <div class="card-body">
+      <p>AgriAI uses a <strong>MobileNetV2</strong> convolutional neural network pre-trained on ImageNet and fine-tuned for plant disease classification. The architecture was chosen for its excellent accuracy-to-size ratio, making it fast for real-time inference on a CPU.</p>
+      <p>The model was trained for 5 epochs with early stopping, achieving <strong>93% validation accuracy</strong> on the New Plant Diseases Dataset from Kaggle. Fine-tuning was done using the Adam optimizer with a learning rate of 1e-4 and data augmentation to improve generalization.</p>
+      <div class="stat-grid">
+        <div class="stat-item"><div class="stat-value">93%</div><div class="stat-desc">Validation Accuracy</div></div>
+        <div class="stat-item"><div class="stat-value">38</div><div class="stat-desc">Disease Classes</div></div>
+        <div class="stat-item"><div class="stat-value">87K+</div><div class="stat-desc">Training Images</div></div>
+        <div class="stat-item"><div class="stat-value">14</div><div class="stat-desc">Crop Species</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span>📦</span><h2>Dataset</h2></div>
+    <div class="card-body">
+      <p>The model was trained on the <strong>New Plant Diseases Dataset</strong> (Kaggle), a curated and augmented version of the PlantVillage dataset. It contains leaf images of healthy and diseased plants under controlled conditions.</p>
+      <p>The dataset contains <strong>87,000+ RGB images</strong> split into 70,295 training and 17,572 validation images across 38 categories representing 14 crop species.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span>🌿</span><h2>Supported Conditions</h2></div>
+    <div class="card-body">
+      <p>The model can identify the following 38 plant conditions:</p>
+      <div class="class-grid">
+        <div class="class-tag diseased">Apple — Apple Scab</div>
+        <div class="class-tag diseased">Apple — Black Rot</div>
+        <div class="class-tag diseased">Apple — Cedar Apple Rust</div>
+        <div class="class-tag healthy">Apple — Healthy</div>
+        <div class="class-tag healthy">Blueberry — Healthy</div>
+        <div class="class-tag diseased">Cherry — Powdery Mildew</div>
+        <div class="class-tag healthy">Cherry — Healthy</div>
+        <div class="class-tag diseased">Corn — Gray Leaf Spot</div>
+        <div class="class-tag diseased">Corn — Common Rust</div>
+        <div class="class-tag diseased">Corn — Northern Leaf Blight</div>
+        <div class="class-tag healthy">Corn — Healthy</div>
+        <div class="class-tag diseased">Grape — Black Rot</div>
+        <div class="class-tag diseased">Grape — Esca (Black Measles)</div>
+        <div class="class-tag diseased">Grape — Leaf Blight</div>
+        <div class="class-tag healthy">Grape — Healthy</div>
+        <div class="class-tag diseased">Orange — Citrus Greening (HLB)</div>
+        <div class="class-tag diseased">Peach — Bacterial Spot</div>
+        <div class="class-tag healthy">Peach — Healthy</div>
+        <div class="class-tag diseased">Bell Pepper — Bacterial Spot</div>
+        <div class="class-tag healthy">Bell Pepper — Healthy</div>
+        <div class="class-tag diseased">Potato — Early Blight</div>
+        <div class="class-tag diseased">Potato — Late Blight</div>
+        <div class="class-tag healthy">Potato — Healthy</div>
+        <div class="class-tag healthy">Raspberry — Healthy</div>
+        <div class="class-tag healthy">Soybean — Healthy</div>
+        <div class="class-tag diseased">Squash — Powdery Mildew</div>
+        <div class="class-tag diseased">Strawberry — Leaf Scorch</div>
+        <div class="class-tag healthy">Strawberry — Healthy</div>
+        <div class="class-tag diseased">Tomato — Bacterial Spot</div>
+        <div class="class-tag diseased">Tomato — Early Blight</div>
+        <div class="class-tag diseased">Tomato — Late Blight</div>
+        <div class="class-tag diseased">Tomato — Leaf Mold</div>
+        <div class="class-tag diseased">Tomato — Septoria Leaf Spot</div>
+        <div class="class-tag diseased">Tomato — Spider Mites</div>
+        <div class="class-tag diseased">Tomato — Target Spot</div>
+        <div class="class-tag diseased">Tomato — Yellow Leaf Curl Virus</div>
+        <div class="class-tag diseased">Tomato — Mosaic Virus</div>
+        <div class="class-tag healthy">Tomato — Healthy</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span>⚠️</span><h2>Disclaimer</h2></div>
+    <div class="card-body">
+      <p>AgriAI is an educational and research tool. While trained on a large dataset with high accuracy, AI predictions may not be 100% reliable in all real-world conditions.</p>
+      <p>For critical crop management decisions, always consult a certified agronomist or plant pathologist. Best results are obtained with clear, well-lit images of individual leaves showing visible symptoms.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>AgriAI · Plant Disease Detection · Built with Flask & TensorFlow &nbsp;|&nbsp; <a href="/">Back to App</a></p>
+</footer>
+</body>
+</html>
